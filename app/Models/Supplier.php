@@ -9,5 +9,9 @@ class Supplier extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'ref_sup';
+    protected $primaryKey = 'sup_ref';
+
+    public $incrementing = false;
+
+    protected $keyType = 'string';
 }

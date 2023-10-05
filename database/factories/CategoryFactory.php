@@ -18,7 +18,7 @@ class CategoryFactory extends Factory
     public function definition(): array
     {
         return [
-            'mct_id' => MainCategory::factory(),
+            'mct_id' => MainCategory::all()[rand(1, count(MainCategory::all('mct_id'))) - 1]->mct_id,
             'cat_libelle' => fake()->words(3, true),
             'cat_img' => fake()->imageUrl(640, 480, 'animals', true, 'cats')
         ];
