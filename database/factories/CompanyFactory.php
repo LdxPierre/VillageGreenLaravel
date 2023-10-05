@@ -19,7 +19,7 @@ class CompanyFactory extends Factory
     {
         return [
             'pro_ref' => fake()->regexify('[PR]{1}[0-9]{8}'),
-            'usr_id' => User::factory(),
+            'usr_id' => User::factory()->state(['usr_type' => 'company']),
             'pro_name' => fake()->company(),
             'pro_contact' => fake()->firstName() . ' ' . fake()->lastName(),
         ];

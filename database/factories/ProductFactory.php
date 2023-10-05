@@ -3,7 +3,6 @@
 namespace Database\Factories;
 
 use App\Models\Category;
-use App\Models\Supplier;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -20,7 +19,7 @@ class ProductFactory extends Factory
     {
         return [
             'prd_ref' => fake()->regexify('[P]{1}[0-9]{9}'),
-            'sup_ref' => Supplier::all()[rand(1, count(Supplier::all('sup_ref')) - 1)]->sup_ref,
+            // 'sup_ref' => Supplier::all()[rand(1, count(Supplier::all('sup_ref')) - 1)]->sup_ref,
             'cat_id' => Category::all()[rand(1, count(Category::all('cat_id')) - 1)]->cat_id,
             'prd_libelle' => fake()->words(3, true),
             'prd_desc' => fake()->paragraph(3),

@@ -19,7 +19,7 @@ class EmployeeFactory extends Factory
     public function definition(): array
     {
         return [
-            'usr_id' => User::factory(),
+            'usr_id' => User::factory()->state(['usr_type' => 'employee']),
             'dep_code' => Departement::all()[rand(1, count(Departement::all('dep_code')) - 1)]->dep_code,
             'emp_firstname' => fake()->firstName(),
             'emp_lastname' => fake()->lastName(),

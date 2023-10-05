@@ -19,7 +19,7 @@ class CustomerFactory extends Factory
     {
         return [
             'cus_ref' => fake()->regexify('[C]{1}[0-9]{9}'),
-            'usr_id' => User::factory(),
+            'usr_id' => User::factory()->state(['usr_type' => 'customer']),
             'cus_firstname' => fake()->firstName(),
             'cus_lastname' => fake()->lastName(),
         ];
