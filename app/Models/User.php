@@ -3,10 +3,12 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class User extends Authenticatable
 {
@@ -42,4 +44,24 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function customer(): HasOne
+    {
+        return $this->hasOne(Customer::class, 'usr_id', 'usr_id');
+    }
+
+    public function company(): HasOne
+    {
+        return $this->hasOne(Company::class, 'usr_id', 'usr_id');
+    }
+
+    public function employee(): HasOne
+    {
+        return $this->hasOne(Employee::class, 'usr_id', 'usr_id');
+    }
+
+    public function products(): BelongsToMany
+    {
+        return $this->belongsToMany(Product::class, 'cart_items', 'usr_id', 'prd_ref');
+    }
 }
